@@ -15,6 +15,7 @@ node{
      sshagent(['sshid1']) {
     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241 cd /home/ubuntu/'
     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241 docker build -t doc .'
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241 docker tag doc jyo425/applicant:${Build_No}'
   }
  }
 }
