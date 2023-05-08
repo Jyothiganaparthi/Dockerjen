@@ -8,7 +8,7 @@ node{
   stage('ssh conncetion'){
     sshagent(['sshid1']) {
     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241'
-      sh'scp /var/lib/jenkins/workspace/pipeline2/* ubuntu@172.31.7.241:/home/ubuntu'
+      sh'scp -r /var/lib/jenkins/workspace/pipeline2/* ubuntu@172.31.7.241:/home/ubuntu'
 }
   }
   stage('docker build'){
