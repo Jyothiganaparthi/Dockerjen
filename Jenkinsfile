@@ -13,7 +13,8 @@ node{
   }
   stage('docker build'){
      sshagent(['sshid1']) {
-    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241'
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241 cd /home/ubuntu/'
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241 docker build -t doc .'
   }
- 
+ }
 }
