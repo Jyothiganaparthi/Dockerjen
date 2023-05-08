@@ -22,6 +22,7 @@ node{
  sshagent(['sshid1']) {
  withCredentials([string(credentialsId: 'dockerid', variable: 'docker')]) {
    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241 docker login -u jyo425 -p${docker}'
+   sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241 docker push jyo425/applicant:v2.$BUILD_ID'
    }
    }
 }
