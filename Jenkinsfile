@@ -7,15 +7,15 @@ node{
   }
   stage('ssh conncetion'){
     sshagent(['sshid1']) {
-    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241'
-      sh'scp -r /var/lib/jenkins/workspace/pipeline2/* ubuntu@172.31.7.241:/home/ubuntu'
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140'
+      sh'scp -r /var/lib/jenkins/workspace/pipeline2/* ubuntu@172.31.13.140:/home/ubuntu'
 }
   }
   stage('docker build'){
      sshagent(['sshid1']) {
-    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241 cd /home/ubuntu/'
-    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241 docker build -t doc .'
-    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.7.241 docker tag doc jyo425/applicant:v2.$BUILD_ID'
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 cd /home/ubuntu/'
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 docker build -t $JOB_NAME:V1.$BUILD_ID .'
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 docker tag $JOB_NAME:V1.$BUILD_ID jyo425/applicant:v2.$BUILD_ID'
   }
  }
  stage('docker push'){
