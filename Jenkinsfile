@@ -16,6 +16,7 @@ node{
     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 cd /home/ubuntu/'
     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 docker build -t $JOB_NAME:V1.$BUILD_ID .'
     sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 docker tag $JOB_NAME:V1.$BUILD_ID jyo425/applicant:v2.$BUILD_ID'
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 docker tag $JOB_NAME:V1.$BUILD_ID jyo425/applicant:latest'   
   }
  }
  stage('docker push'){
@@ -23,6 +24,7 @@ node{
  withCredentials([string(credentialsId: 'dockerid', variable: 'docker')]) {
    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 docker login -u jyo425 -p${docker}'
    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 docker push jyo425/applicant:v2.$BUILD_ID'
+   sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 docker push jyo425/applicant:latest'
    }
    }
 }
