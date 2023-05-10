@@ -34,5 +34,11 @@ node{
     sh'scp -r /var/lib/jenkins/workspace/pipeline2/* ubuntu@172.31.12.160:/home/ubuntu'
 }  
 }
+  stage('run playbook'){
+    sshagent(['sshid1']) {
+       sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140 cd /home/ubuntu'
+      sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.140  ansible-playbook ansible.yaml'
+      
 }
-
+}
+}
