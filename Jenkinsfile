@@ -28,4 +28,11 @@ node{
    }
    }
 }
+  stage('copy files from ansible to mini'){
+    sshagent(['mini_id']) {
+    sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.12.160'
+    sh'scp -r /var/lib/jenkins/workspace/pipeline2/* ubuntu@172.31.12.160:/home/ubuntu'
+}  
+}
+}
 }
